@@ -13,10 +13,10 @@ def driver():
 @pytest.fixture
 def driver_main(driver):
     driver.get(URLS['main_page_url'])
-    yield driver
+    return driver
 
 
 @pytest.fixture
 def driver_order(driver):
     driver.get(URLS['order_page_url'])
-    yield driver
+    return driver

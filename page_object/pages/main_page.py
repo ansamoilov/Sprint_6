@@ -28,7 +28,19 @@ class MainPage(BasePage):
         answer = self.get_text_from_element(locator_a_formatted)
         return answer
 
-    @allure.step('Открытие формы заказа')
+    @allure.step('Открытие формы заказа через кнопку в хедере')
     def open_order_form(self):
         self.click_to_element(MainPageLocators.ORDER_BUTTON_TOP)
-        self.find_element_with_wait(OrderPageLocators.ORDER_HEADER)
+        order_header = self.find_element_with_wait(OrderPageLocators.ORDER_HEADER)
+        return order_header
+
+    @allure.step('Открытие формы заказа через кнопку под формой заказа')
+    def open_order_form_via_bottom_button(self):
+        order_button_element = self.scroll_to_element(MainPageLocators.ORDER_BUTTON_BOTTOM)
+        order_button_element.click()
+        order_header = self.find_element_with_wait(OrderPageLocators.ORDER_HEADER)
+        return order_header
+
+    @allure.step('Клик на логотип яндекс для редиректа')
+    def click_on_yandex_logo(self):
+        self.click_to_element(OrderPageLocators.YANDEX_LOGO)

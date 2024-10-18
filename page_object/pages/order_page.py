@@ -97,3 +97,15 @@ class OrderPage(BasePage):
         self.select_color_checkbox(color)
         if comment:
             self.comment_input_fill_out(comment)
+
+    @allure.step('Создание и подтверждение заказа')
+    def create_and_confirm_order(self):
+        self.click_to_element(OrderPageLocators.CREATE_ORDER_BUTTON)
+        confirm_button = self.find_element_with_wait(OrderPageLocators.YES_BUTTON)
+        confirm_button.click()
+        check_status_button = self.find_element_with_wait(OrderPageLocators.CHECK_STATUS_BUTTON)
+        return check_status_button
+
+    @allure.step('Клик на логотип самоката для редиректа')
+    def click_on_scooter_logo(self):
+        self.click_to_element(OrderPageLocators.SCOOTER_LOGO)
